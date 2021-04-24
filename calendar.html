@@ -7,16 +7,11 @@
     />
     <style>
       :root {
-        --teal-050: #effcf6;
-        --teal-100: #c6f7e2;
-        --teal-200: #8eedc7;
-        --teal-300: #65d6ad;
-        --teal-400: #3ebd93;
-        --teal-500: #27ab83;
-        --teal-600: #199473;
-        --teal-700: #147d64;
-        --teal-800: #0c6b58;
-        --teal-900: #014d40;
+        --color-week: #c3aed6;
+        --color-day: #8675a9;
+        --color-month: #8675a9;
+        --color-selected: #ffedf4;
+        --color-bg: #ffffff;
       }
 
       * {
@@ -26,34 +21,38 @@
       html {
         font-family: 'Open Sans', 'Roboto', 'Helvetica', 'Arial', sans-serif;
         line-height: 1.4;
-        font-weight: 400;
+        font-weight: 500;
       }
 
       body {
         margin: 0;
         height: 100%;
         display: flex;
-        background-color: #fff;
+        background-color: var(--color-bg);
+        flex-direction: column;
+        overflow: hidden;
       }
 
       main {
-        padding: 5rem;
+        padding: 3rem;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        font-size: 3rem;
+        font-size: 4rem;
+        width: 100%;
       }
 
       .month-indicator {
         text-align: center;
-        font-weight: 500;
+        font-weight: 600;
         letter-spacing: 2rem;
         text-transform: uppercase;
         font-size: 6rem;
         display: flex;
         align-items: center;
         flex-direction: column;
-        flex: 1;
+        margin-bottom: 12rem;
+        color: var(--color-month);
       }
 
       .month-indicator > time {
@@ -67,7 +66,7 @@
         height: 0.5rem;
         content: '';
         margin-top: 2.5rem;
-        background-color: #243b53;
+        background-color: var(--color-month);
       }
 
       .day-of-week,
@@ -76,29 +75,28 @@
         grid-template-columns: repeat(7, 1fr);
       }
 
-      .day-of-week {
-        margin-top: 1.25rem;
-      }
-
-      .day-of-week > * {
-        font-weight: 500;
+      .day-of-week .heading {
         letter-spacing: 0.3rem;
-        font-variant: small-caps;
         text-align: center;
+        position: relative;
+        padding-bottom: 100%;
+        color: var(--color-week);
       }
 
-      /* Positioning the first day */
-      .date-grid .day:first-child {
-        grid-column: 6;
+      .day-of-week .heading > div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
 
       .date-grid .day {
         position: relative;
-        padding-bottom: calc(1 / 1 * 100%);
+        padding-bottom: 100%;
         border: 0;
         width: 100%;
-        border-radius: 50%;
         background-color: transparent;
+        color: var(--color-day);
       }
 
       .date-grid .day > time {
@@ -106,10 +104,17 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        height: 75%;
+        width: 75%;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      .date-grid .day.is-selected {
-        background-color: var(--teal-100);
+      .date-grid .day.is-selected > time {
+        background-color: var(--color-selected);
+        font-weight: 700;
       }
     </style>
   </head>
@@ -117,117 +122,105 @@
   <body>
     <main id="calendar">
       <div class="month-indicator">
-        <time datetime="2019-02"> February</time>
+        <time id="text-month"></time>
       </div>
       <div class="day-of-week">
-        <div>M</div>
-        <div>T</div>
-        <div>W</div>
-        <div>T</div>
-        <div>F</div>
-        <div>S</div>
-        <div>S</div>
+        <div class="heading"><div>M</div></div>
+        <div class="heading"><div>T</div></div>
+        <div class="heading"><div>W</div></div>
+        <div class="heading"><div>T</div></div>
+        <div class="heading"><div>F</div></div>
+        <div class="heading"><div>S</div></div>
+        <div class="heading"><div>S</div></div>
       </div>
-      <div class="date-grid">
-        <div class="day">
-          <time datetime="2019-02-01">1</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-02">2</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-03">3</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-04">4</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-05">5</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-06">6</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-07">7</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-08">8</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-09">9</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-10">10</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-11">11</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-12">12</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-13">13</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-14">14</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-15">15</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-16">16</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-17">17</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-18">18</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-19">19</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-20">20</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-21">21</time>
-        </div>
-        <div class="day is-selected">
-          <time datetime="2019-02-22">22</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-23">23</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-24">24</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-25">25</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-26">26</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-27">27</time>
-        </div>
-        <div class="day">
-          <time datetime="2019-02-28">28</time>
-        </div>
-      </div>
+      <div class="date-grid" id="days"></div>
     </main>
     <script>
-      var c = document.getElementById('calendar');
+      const bounds = document.body.getBoundingClientRect();
+      const size = Math.min(bounds.width, bounds.height);
+      document.documentElement.style.fontSize = `${size / 100}px`;
 
-      // TODO: aspect ratio
+      function getDaysInMonth(dirtyDate) {
+        const date = new Date(dirtyDate);
+        const year = date.getFullYear();
+        const monthIndex = date.getMonth();
+        const lastDayOfMonth = new Date(0);
+        lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
+        lastDayOfMonth.setHours(0, 0, 0, 0);
+        return lastDayOfMonth.getDate();
+      }
+
+      function startOfMonth(dirtyDate) {
+        const date = new Date(dirtyDate);
+        date.setDate(1);
+        date.setHours(0, 0, 0, 0);
+        return date;
+      }
+
+      function getISODay(dirtyDate) {
+        const date = new Date(dirtyDate);
+        let day = date.getDay();
+
+        if (day === 0) {
+          day = 7;
+        }
+
+        return day;
+      }
+
+      const months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ];
+      const now = new Date();
+      const month = now.getMonth();
+      const daysInMonth = getDaysInMonth(now);
+
+      var daysEl = document.getElementById('days');
+      document.getElementById('text-month').textContent = months[month];
+
+      for (let i = 1; i <= daysInMonth; i++) {
+        const divEl = document.createElement('div');
+        const timeEl = document.createElement('time');
+        divEl.classList.add('day');
+        if (now.getDate() === i) {
+          divEl.classList.add('is-selected');
+        }
+        divEl.appendChild(timeEl);
+        timeEl.textContent = i;
+        daysEl.appendChild(divEl);
+        if (i === 1) {
+          divEl.style.gridColumn = getISODay(startOfMonth(now));
+        }
+      }
 
       const resizeObserver = new ResizeObserver((entries) => {
+        var c = document.getElementById('calendar');
+        const c_bounds = c.getBoundingClientRect();
+        const ratio = c_bounds.width / c_bounds.height;
+        console.log(ratio, c_bounds);
+
         const bounds = document.body.getBoundingClientRect();
-
         const size = Math.min(bounds.width, bounds.height);
-
         document.documentElement.style.fontSize = `${size / 100}px`;
-        c.style.width = `${size}px`;
-        c.style.height = `${size}px`;
+
+        if (bounds.width / ratio > bounds.height) {
+          c.style.width = `${bounds.height * ratio}px`;
+          c.style.height = `${bounds.height}px`;
+        } else {
+          c.style.width = `${bounds.width}px`;
+          c.style.height = `${bounds.width / ratio}px`;
+        }
       });
 
       resizeObserver.observe(document.body);
