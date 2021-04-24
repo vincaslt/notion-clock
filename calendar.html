@@ -215,23 +215,22 @@
         </div>
       </div>
     </main>
+    <script>
+      var c = document.getElementById('calendar');
+
+      // TODO: aspect ratio
+
+      const resizeObserver = new ResizeObserver((entries) => {
+        const bounds = document.body.getBoundingClientRect();
+
+        const size = Math.min(bounds.width, bounds.height);
+
+        document.documentElement.style.fontSize = `${size / 100}px`;
+        c.style.width = `${size}px`;
+        c.style.height = `${size}px`;
+      });
+
+      resizeObserver.observe(document.body);
+    </script>
   </body>
-
-  <script>
-    var c = document.getElementById('calendar');
-
-    // TODO: aspect ratio
-
-    const resizeObserver = new ResizeObserver((entries) => {
-      const bounds = document.body.getBoundingClientRect();
-
-      const size = Math.min(bounds.width, bounds.height);
-
-      document.documentElement.style.fontSize = `${size / 100}px`;
-      c.style.width = `${size}px`;
-      c.style.height = `${size}px`;
-    });
-
-    resizeObserver.observe(document.body);
-  </script>
 </html>
