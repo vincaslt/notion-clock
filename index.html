@@ -20,67 +20,67 @@
 
     <script>
       day_arr = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
       ];
       month_arr = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
       ];
 
       function clock_conti(size, cns, clockd) {
         cns.clearRect(0, 0, size, size);
 
         cns.beginPath();
-        if (clockd.hasOwnProperty('bg_color')) {
-          cns.fillStyle = clockd['bg_color'];
+        if (clockd.hasOwnProperty("bg_color")) {
+          cns.fillStyle = clockd["bg_color"];
         } else {
-          cns.fillStyle = '#ffffff';
+          cns.fillStyle = "#ffffff";
         }
         cns.rect(0, 0, size, size);
         cns.fill();
         cns.closePath();
-        if (clockd.hasOwnProperty('bgLoaded') && clockd.bgLoaded == 1) {
-          if (clockd.hasOwnProperty('bg_opacity')) {
-            cns.globalAlpha = clockd['bg_opacity'];
+        if (clockd.hasOwnProperty("bgLoaded") && clockd.bgLoaded == 1) {
+          if (clockd.hasOwnProperty("bg_opacity")) {
+            cns.globalAlpha = clockd["bg_opacity"];
             cns.drawImage(clockd.bgImage, 0, 0, size, size);
             cns.globalAlpha = 1;
           }
         }
 
         if (
-          (clockd.hasOwnProperty('indicate') && clockd.indicate == true) ||
-          !clockd.hasOwnProperty('indicate')
+          (clockd.hasOwnProperty("indicate") && clockd.indicate == true) ||
+          !clockd.hasOwnProperty("indicate")
         ) {
           indicator(size, cns, clockd);
         }
 
-        if (clockd.hasOwnProperty('time_add') && clockd.time_add) {
+        if (clockd.hasOwnProperty("time_add") && clockd.time_add) {
           time_add(size / 2, (size / 5) * 3, size, cns, clockd);
         }
 
-        if (clockd.hasOwnProperty('date_add') && clockd.date_add) {
+        if (clockd.hasOwnProperty("date_add") && clockd.date_add) {
           date_add(size / 2, (size / 5) * 3 + size / 10, size, cns, clockd);
         }
 
         var now = new Date();
-        var time_off = clockd.hasOwnProperty('timeoffset')
-          ? clockd['timeoffset']
+        var time_off = clockd.hasOwnProperty("timeoffset")
+          ? clockd["timeoffset"]
           : 0;
         now.setTime(now.getTime() + time_off * 1000);
         var milisec = now.getMilliseconds();
@@ -88,13 +88,13 @@
         var min = now.getMinutes();
         var hour = now.getHours() % 12;
 
-        cns.fillStyle = clockd.hasOwnProperty('dial1_color')
-          ? clockd['dial1_color']
-          : '#333333';
-        cns.strokeStyle = clockd.hasOwnProperty('dial1_color')
-          ? clockd['dial1_color']
-          : '#333333';
-        cns.lineCap = 'round';
+        cns.fillStyle = clockd.hasOwnProperty("dial1_color")
+          ? clockd["dial1_color"]
+          : "#333333";
+        cns.strokeStyle = clockd.hasOwnProperty("dial1_color")
+          ? clockd["dial1_color"]
+          : "#333333";
+        cns.lineCap = "round";
 
         cns.beginPath();
         cns.lineWidth = 1;
@@ -124,13 +124,13 @@
         cns.stroke();
         cns.closePath();
 
-        cns.fillStyle = clockd.hasOwnProperty('dial2_color')
-          ? clockd['dial2_color']
-          : '#333333';
-        cns.strokeStyle = clockd.hasOwnProperty('dial2_color')
-          ? clockd['dial2_color']
-          : '#333333';
-        cns.lineCap = 'round';
+        cns.fillStyle = clockd.hasOwnProperty("dial2_color")
+          ? clockd["dial2_color"]
+          : "#333333";
+        cns.strokeStyle = clockd.hasOwnProperty("dial2_color")
+          ? clockd["dial2_color"]
+          : "#333333";
+        cns.lineCap = "round";
 
         cns.beginPath();
         cns.lineWidth = 2;
@@ -146,13 +146,13 @@
         cns.stroke();
         cns.closePath();
 
-        cns.fillStyle = clockd.hasOwnProperty('dial3_color')
-          ? clockd['dial3_color']
-          : '#333333';
-        cns.strokeStyle = clockd.hasOwnProperty('dial3_color')
-          ? clockd['dial3_color']
-          : '#333333';
-        cns.lineCap = 'round';
+        cns.fillStyle = clockd.hasOwnProperty("dial3_color")
+          ? clockd["dial3_color"]
+          : "#333333";
+        cns.strokeStyle = clockd.hasOwnProperty("dial3_color")
+          ? clockd["dial3_color"]
+          : "#333333";
+        cns.lineCap = "round";
 
         cns.beginPath();
         cns.lineWidth = 3;
@@ -168,13 +168,13 @@
         cns.stroke();
         cns.closePath();
 
-        cns.fillStyle = clockd.hasOwnProperty('dial1_color')
-          ? clockd['dial1_color']
-          : '#333333';
-        cns.strokeStyle = clockd.hasOwnProperty('dial1_color')
-          ? clockd['dial1_color']
-          : '#333333';
-        cns.lineCap = 'round';
+        cns.fillStyle = clockd.hasOwnProperty("dial1_color")
+          ? clockd["dial1_color"]
+          : "#333333";
+        cns.strokeStyle = clockd.hasOwnProperty("dial1_color")
+          ? clockd["dial1_color"]
+          : "#333333";
+        cns.lineCap = "round";
 
         cns.beginPath();
         cns.lineWidth = 2;
@@ -192,10 +192,10 @@
       }
 
       function indicator(size, cns, clockd) {
-        if (clockd.hasOwnProperty('indicate_color')) {
-          cns.strokeStyle = clockd['indicate_color'];
+        if (clockd.hasOwnProperty("indicate_color")) {
+          cns.strokeStyle = clockd["indicate_color"];
         } else {
-          cns.strokeStyle = '#333';
+          cns.strokeStyle = "#333";
         }
         cns.lineWidth = 2;
 
@@ -225,19 +225,19 @@
       }
 
       function time_add(x, y, size, cns, clockd) {
-        if (!clockd.hasOwnProperty('time_add')) {
+        if (!clockd.hasOwnProperty("time_add")) {
           return;
         }
 
         var now = new Date();
-        var time_off = clockd.hasOwnProperty('timeoffset')
-          ? clockd['timeoffset']
+        var time_off = clockd.hasOwnProperty("timeoffset")
+          ? clockd["timeoffset"]
           : 0;
         now.setTime(now.getTime() + time_off * 1000);
         var sec = now.getSeconds();
         var min = now.getMinutes();
         var hour =
-          clockd.hasOwnProperty('time_24h') && clockd['time_24h']
+          clockd.hasOwnProperty("time_24h") && clockd["time_24h"]
             ? now.getHours()
             : now.getHours() % 12;
 
@@ -245,53 +245,53 @@
           hour = 12;
         }
         if (hour < 10) {
-          hour = '0' + hour;
+          hour = "0" + hour;
         }
         if (min < 10) {
-          min = '0' + min;
+          min = "0" + min;
         }
         if (sec < 10) {
-          sec = '0' + sec;
+          sec = "0" + sec;
         }
         cns.lineWidth = 1;
-        cns.fillStyle = clockd.hasOwnProperty('time_add_color')
-          ? clockd['time_add_color']
-          : '#333';
-        cns.textBaseline = 'middle';
-        cns.textAlign = 'center';
-        cns.font = size / 15 + 'px Arial';
+        cns.fillStyle = clockd.hasOwnProperty("time_add_color")
+          ? clockd["time_add_color"]
+          : "#333";
+        cns.textBaseline = "middle";
+        cns.textAlign = "center";
+        cns.font = size / 15 + "px Arial";
 
-        switch (parseInt(clockd['time_add'])) {
+        switch (parseInt(clockd["time_add"])) {
           case 1:
-            cns.fillText(hour + ':' + min + ':' + sec, x, y);
+            cns.fillText(hour + ":" + min + ":" + sec, x, y);
             break;
           case 2:
-            cns.fillText(hour + ':' + min, x, y);
+            cns.fillText(hour + ":" + min, x, y);
             break;
           case 3:
             hour = now.getHours();
             if (hour < 10) {
-              hour = '0' + hour;
+              hour = "0" + hour;
             }
-            cns.fillText(hour + ':' + min + ':' + sec, x, y);
+            cns.fillText(hour + ":" + min + ":" + sec, x, y);
             break;
           default:
             hour = now.getHours();
             if (hour < 10) {
-              hour = '0' + hour;
+              hour = "0" + hour;
             }
-            cns.fillText(hour + ':' + min, x, y);
+            cns.fillText(hour + ":" + min, x, y);
         }
       }
 
       function date_add(x, y, size, cns, clockd) {
-        if (!clockd.hasOwnProperty('date_add')) {
+        if (!clockd.hasOwnProperty("date_add")) {
           return;
         }
 
         var now = new Date();
-        var time_off = clockd.hasOwnProperty('timeoffset')
-          ? clockd['timeoffset']
+        var time_off = clockd.hasOwnProperty("timeoffset")
+          ? clockd["timeoffset"]
           : 0;
         now.setTime(now.getTime() + time_off * 1000);
         var day = now.getDate();
@@ -299,24 +299,24 @@
         var month = now.getMonth() + 1;
 
         if (month < 10) {
-          month = '0' + month;
+          month = "0" + month;
         }
         if (day < 10) {
-          day = '0' + day;
+          day = "0" + day;
         }
 
         cns.lineWidth = 1;
-        cns.fillStyle = clockd['date_add_color'];
-        cns.textBaseline = 'middle';
-        cns.textAlign = 'center';
-        cns.font = size / 20 + 'px Arial';
+        cns.fillStyle = clockd["date_add_color"];
+        cns.textBaseline = "middle";
+        cns.textAlign = "center";
+        cns.font = size / 20 + "px Arial";
 
-        switch (parseInt(clockd['date_add'])) {
+        switch (parseInt(clockd["date_add"])) {
           case 1:
-            cns.fillText(day + '/' + month + '/' + year, x, y);
+            cns.fillText(day + "/" + month + "/" + year, x, y);
             break;
           case 2:
-            cns.fillText(month + '/' + day + '/' + year, x, y);
+            cns.fillText(month + "/" + day + "/" + year, x, y);
             break;
           case 3:
             day = now.getDay();
@@ -324,11 +324,11 @@
             break;
           case 4:
             month = now.getMonth();
-            cns.fillText(month_arr[month] + ' ' + day, x, y);
+            cns.fillText(month_arr[month] + " " + day, x, y);
             break;
           default:
             month = now.getMonth();
-            cns.fillText(day + ' ' + month_arr[month], x, y);
+            cns.fillText(day + " " + month_arr[month], x, y);
         }
       }
     </script>
@@ -346,21 +346,28 @@
       //   date_add: 3,
       //   date_add_color: "#F6EEEA"
       // };
+
+      const params = new URLSearchParams(window.location.search);
+
+      const c_dial1 = params.get("s") || "#efbbcf";
+      const c_dial2 = params.get("m") || "#c3aed6";
+      const c_dial3 = params.get("h") || c_dial2;
+
       clockd1_ = {
         indicate: true,
-        indicate_color: '#8675a9',
-        dial1_color: '#efbbcf',
-        dial2_color: '#c3aed6',
-        dial3_color: '#c3aed6',
-        time_add_color: '#c3aed6',
+        indicate_color: params.get("indicator") || "#8675a9",
+        dial1_color: c_dial1,
+        dial2_color: c_dial2,
+        dial3_color: c_dial3,
+        time_add_color: params.get("time") || "#c3aed6",
         time_add: 1,
         time_24h: true,
         date_add: 3,
-        date_add_color: '#efbbcf',
+        date_add_color: params.get("date") || "#efbbcf",
       };
 
-      var c = document.getElementById('clock1_');
-      cns1_ = c.getContext('2d');
+      var c = document.getElementById("clock1_");
+      cns1_ = c.getContext("2d");
 
       const resizeObserver = new ResizeObserver((entries) => {
         clock_stop(clockd1_);
@@ -370,8 +377,8 @@
 
         const size = Math.min(bounds.width, bounds.height);
 
-        c.setAttribute('width', size);
-        c.setAttribute('height', size);
+        c.setAttribute("width", size);
+        c.setAttribute("height", size);
         clock_conti(size, cns1_, clockd1_);
       });
 
