@@ -32,13 +32,36 @@
       !(function (d, s, id) {
         var js,
           fjs = d.getElementsByTagName(s)[0];
+        const e = d.getElementsByClassName("weatherwidget-io")[0];
+
+        const params = new URLSearchParams(window.location.search);
+
+        const getParam = (c) => {
+          const rx = /^[0-9A-Fa-f]{6}$/i;
+          const color = params.get(c);
+          return rx.test(color) ? `#${color}` : color;
+        };
+
+        const initColor = (name) => {
+          const c = getParam(name);
+          if (c) {
+            e.setAttribute(`data-${name}`, c);
+          }
+        };
+
+        initColor("accent");
+
+        ["higcolor", "low", "sun", "moon", "cloud", "rain", "snow"].map((c) =>
+          initColor(`${c}color`)
+        );
+
         if (!d.getElementById(id)) {
           js = d.createElement(s);
           js.id = id;
-          js.src = 'https://weatherwidget.io/js/widget.min.js';
+          js.src = "https://weatherwidget.io/js/widget.min.js";
           fjs.parentNode.insertBefore(js, fjs);
         }
-      })(document, 'script', 'weatherwidget-io-js');
+      })(document, "script", "weatherwidget-io-js");
     </script>
   </body>
 </html>
